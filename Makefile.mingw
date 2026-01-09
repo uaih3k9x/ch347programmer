@@ -1,0 +1,26 @@
+# CH341 Compatibility Layer - Makefile for MinGW
+# Usage: mingw32-make -f Makefile.mingw
+
+CC = gcc
+CFLAGS = -Wall -Wextra -O2 -shared
+LDFLAGS = -lkernel32
+
+# Output
+TARGET = CH341DLL.dll
+
+# Source files
+SOURCES = ch341_compat.c
+OBJECTS = $(SOURCES:.c=.o)
+
+# DEF file for exports
+DEF_FILE = ch341_compat.def
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $@ $^ $(DEF_FILE) $(LDFLAGS)
+
+clean:
+	del /Q $(TARGET) *.o 2>nul || true
+
+.PHONY: all clean

@@ -1,0 +1,94 @@
+; CH341 Compatibility Layer - DLL Export Definitions
+; Exports CH341 API functions that wrap CH347 DLL calls
+
+LIBRARY CH341DLL
+EXPORTS
+    ; Device Management
+    CH341OpenDevice         @1
+    CH341CloseDevice        @2
+    CH341GetVersion         @3
+    CH341GetDrvVersion      @4
+    CH341ResetDevice        @5
+    CH341GetDeviceDescr     @6
+    CH341GetConfigDescr     @7
+    CH341GetDeviceName      @8
+    CH341GetVerIC           @9
+    CH341SetExclusive       @10
+    CH341SetTimeout         @11
+    CH341FlushBuffer        @12
+    CH341DriverCommand      @13
+
+    ; I2C Functions
+    CH341SetStream          @20
+    CH341SetDelaymS         @21
+    CH341StreamI2C          @22
+    CH341ReadI2C            @23
+    CH341WriteI2C           @24
+
+    ; EEPROM Functions
+    CH341ReadEEPROM         @30
+    CH341WriteEEPROM        @31
+
+    ; SPI Functions
+    CH341StreamSPI3         @40
+    CH341StreamSPI4         @41
+    CH341StreamSPI5         @42
+    CH341BitStreamSPI       @43
+
+    ; GPIO Functions
+    CH341GetInput           @50
+    CH341GetStatus          @51
+    CH341SetOutput          @52
+    CH341Set_D5_D0          @53
+
+    ; Data Transfer
+    CH341ReadData           @60
+    CH341WriteData          @61
+    CH341ReadData0          @62
+    CH341ReadData1          @63
+    CH341WriteData0         @64
+    CH341WriteData1         @65
+    CH341WriteRead          @66
+
+    ; Parallel Port (EPP/MEM)
+    CH341SetParaMode        @70
+    CH341InitParallel       @71
+    CH341EppReadData        @72
+    CH341EppReadAddr        @73
+    CH341EppWriteData       @74
+    CH341EppWriteAddr       @75
+    CH341EppSetAddr         @76
+    CH341MemReadAddr0       @77
+    CH341MemReadAddr1       @78
+    CH341MemWriteAddr0      @79
+    CH341MemWriteAddr1      @80
+
+    ; Interrupt Functions
+    CH341SetIntRoutine      @90
+    CH341ReadInter          @91
+    CH341AbortInter         @92
+    CH341ResetInter         @93
+
+    ; Abort/Reset
+    CH341AbortRead          @100
+    CH341AbortWrite         @101
+    CH341ResetRead          @102
+    CH341ResetWrite         @103
+
+    ; Buffer Upload/Download
+    CH341SetBufUpload       @110
+    CH341QueryBufUpload     @111
+    CH341SetBufDownload     @112
+    CH341QueryBufDownload   @113
+
+    ; Device Notification
+    CH341SetDeviceNotify    @120
+
+    ; Extended Functions
+    CH341OpenDeviceEx       @130
+    CH341CloseDeviceEx      @131
+    CH341GetDeviceNameEx    @132
+    CH341SetDeviceNotifyEx  @133
+
+    ; Serial Port
+    CH341SetupSerial        @140
