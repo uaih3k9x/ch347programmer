@@ -1,1 +1,77 @@
-evt/*
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# ---- Local AI/tooling settings ----
+.claude/
+
+# ---- Project vendor/test data ----
+evt/
+ch347-official/*
+
+# ---- C / CMake build outputs ----
+build/
+cmake-build-*/
+out/
+bin/
+lib/
+
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/install_manifest.txt
+**/compile_commands.json
+**/Makefile
+*.ninja
+*.ninja_deps
+*.ninja_log
+
+# ---- Compiled artifacts ----
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.exp
+*.pdb
+*.ilk
+*.idb
+*.pch
+*.d
+*.log
+*.dSYM/
+
+# ---- Visual Studio / MSBuild ----
+.vs/
+*.suo
+*.user
+*.VC.db
+*.VC.opendb
+Debug/
+Release/
+x64/
+x86/
+
+# ---- Rust / Tauri (ch347-flasher) ----
+**/target/
+**/*.rs.bk
+**/src-tauri/gen/
+
+# ---- Node (if added for UI build) ----
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Large local archives (optional) ----
+ch347-main.zip

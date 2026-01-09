@@ -1,0 +1,31 @@
+[package]
+name = "ch347-flasher"
+version = "0.1.0"
+description = "CH347 SPI Flash Programmer for BIOS"
+authors = ["you"]
+edition = "2021"
+
+[lib]
+name = "ch347_flasher_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusb = "0.9"
+log = "0.4"
+env_logger = "0.11"
+hex = "0.4"
+thiserror = "1"
+parking_lot = "0.12"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

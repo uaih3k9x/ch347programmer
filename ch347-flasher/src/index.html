@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH347 BIOS Flasher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>CH347 BIOS Flasher</h1>
+            <div class="header-right">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="main">Main</button>
+                    <button class="tab-btn" data-tab="hex">HEX View</button>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot disconnected"></span>
+                    <span class="status-text">Disconnected</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Tab -->
+        <main class="main tab-content active" id="tab-main">
+            <!-- Device Panel -->
+            <section class="panel device-panel">
+                <h2>Device</h2>
+                <div class="device-info" id="deviceInfo">
+                    <p class="placeholder">No device connected</p>
+                </div>
+                <div class="button-group">
+                    <button id="btnConnect" class="btn btn-primary">Connect</button>
+                    <button id="btnDisconnect" class="btn btn-secondary" disabled>Disconnect</button>
+                </div>
+            </section>
+
+            <!-- Chip Panel -->
+            <section class="panel chip-panel">
+                <h2>Flash Chip</h2>
+                <div class="chip-info" id="chipInfo">
+                    <p class="placeholder">No chip detected</p>
+                </div>
+                <div class="button-group">
+                    <button id="btnDetect" class="btn btn-primary" disabled>Detect Chip</button>
+                </div>
+            </section>
+
+            <!-- Operations Panel -->
+            <section class="panel operations-panel">
+                <h2>Operations</h2>
+
+                <div class="file-input-group">
+                    <label>File:</label>
+                    <input type="text" id="filePath" readonly placeholder="Select a file...">
+                    <button id="btnBrowse" class="btn btn-small">Browse</button>
+                </div>
+
+                <div class="button-grid">
+                    <button id="btnRead" class="btn btn-action" disabled>
+                        <span class="icon">📖</span>
+                        Read
+                    </button>
+                    <button id="btnWrite" class="btn btn-action btn-warning" disabled>
+                        <span class="icon">✏️</span>
+                        Write
+                    </button>
+                    <button id="btnVerify" class="btn btn-action" disabled>
+                        <span class="icon">✓</span>
+                        Verify
+                    </button>
+                    <button id="btnErase" class="btn btn-action btn-danger" disabled>
+                        <span class="icon">🗑️</span>
+                        Erase
+                    </button>
+                </div>
+
+                <div class="options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="verifyAfterWrite" checked>
+                        Verify after write
+                    </label>
+                </div>
+            </section>
+
+            <!-- Progress Panel -->
+            <section class="panel progress-panel">
+                <h2>Progress</h2>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressOperation">Idle</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Log Panel -->
+            <section class="panel log-panel">
+                <h2>Log</h2>
+                <div class="log-container" id="logContainer">
+                    <div class="log-entry info">Welcome to CH347 BIOS Flasher</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- HEX View Tab -->
+        <main class="main tab-content" id="tab-hex">
+            <section class="panel hex-panel">
+                <div class="hex-toolbar">
+                    <div class="hex-file-info">
+                        <span id="hexFileName">No file loaded</span>
+                        <span id="hexFileSize"></span>
+                    </div>
+                    <div class="hex-controls">
+                        <label>Go to:</label>
+                        <input type="text" id="hexGotoAddress" placeholder="0x0000" class="hex-input">
+                        <button id="btnHexGoto" class="btn btn-small">Go</button>
+                        <span class="hex-separator">|</span>
+                        <label>Search:</label>
+                        <input type="text" id="hexSearch" placeholder="FF 00 or text" class="hex-input">
+                        <button id="btnHexSearch" class="btn btn-small">Find</button>
+                    </div>
+                </div>
+                <div class="hex-view-container">
+                    <div class="hex-header">
+                        <span class="hex-addr-header">Address</span>
+                        <span class="hex-bytes-header">00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F</span>
+                        <span class="hex-ascii-header">ASCII</span>
+                    </div>
+                    <div class="hex-content" id="hexContent">
+                        <div class="hex-placeholder">Select a file to view its contents</div>
+                    </div>
+                </div>
+                <div class="hex-footer">
+                    <div class="hex-pagination">
+                        <button id="btnHexFirst" class="btn btn-small" disabled>|&lt;</button>
+                        <button id="btnHexPrev" class="btn btn-small" disabled>&lt;</button>
+                        <span id="hexPageInfo">Page 0 / 0</span>
+                        <button id="btnHexNext" class="btn btn-small" disabled>&gt;</button>
+                        <button id="btnHexLast" class="btn btn-small" disabled>&gt;|</button>
+                    </div>
+                    <div class="hex-selection-info">
+                        <span id="hexSelectionInfo">Offset: - | Value: -</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>CH347 BIOS Flasher v0.1.0</span>
+            <span>•</span>
+            <span>Made with Rust + Tauri</span>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
